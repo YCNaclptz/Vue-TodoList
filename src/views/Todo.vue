@@ -1,6 +1,6 @@
 <template>
     <div>
-        <item class="item" v-for="todo in todos" :key="todo.id" :todo="todo" />
+        <item class="item" v-for="todo in todos" :key="todo.id" :todo="todo" @del="del"/>
     </div>
 </template>
 
@@ -11,7 +11,10 @@ const todos = ref([]);
 
 todos.value = await fetch(`http://127.0.0.1:8003/news`)
     .then(res => res.json());
-
+const del = async () => {
+    todos.value = await fetch(`http://127.0.0.1:8003/news`)
+        .then(res => res.json());
+}
 </script>
 
 <style lang="scss" scoped>

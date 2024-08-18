@@ -3,19 +3,27 @@
     <div>
         <div class="item">
             <input type="text" :value="todo.title">
-            <button>刪除</button>
+            <button @click="del">刪除</button>
         </div>
     </div>
 </template>
 
 <script setup>
 
-defineProps({
+const {todo} = defineProps({
     todo: {
         type: Object,
         required: true
     }
-})
+});
+
+const emit = defineEmits(['del']);
+const del = async () => {
+    await fetch(`http://127.0.0.1:8003/news/${todo.id}`, {
+        method: 'delete'
+    });
+    emit('del');
+}
 </script>
 
 <style lang="scss" scoped>
@@ -24,6 +32,7 @@ div.item {
     display: flex;
     input {
             padding: 10px;
+            flex: 1;
         }
 }
 
