@@ -7,13 +7,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import Item from '../components/Item.vue';
+import useRequest from '../composables/useRequest.js';
+
+const request = useRequest();
 const todos = ref([]);
 
-todos.value = await fetch(`http://127.0.0.1:8003/news`)
-    .then(res => res.json());
+todos.value = await request.get();
 const del = async () => {
-    todos.value = await fetch(`http://127.0.0.1:8003/news`)
-        .then(res => res.json());
+    todos.value = await request.get();
 }
 </script>
 
