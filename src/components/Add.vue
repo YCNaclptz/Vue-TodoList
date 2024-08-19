@@ -26,7 +26,7 @@ const onSubmit = () => {
 .add{
     display: flex;
     input {
-        border: solid 5px #8e44ad;
+        border: solid 5px #16a085;
         padding: 10px;
         flex: 1
     }
