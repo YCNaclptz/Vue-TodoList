@@ -1,11 +1,15 @@
 <template>
     <div class="sort">
-        <button>升序</button>
+        <button @click="sort">{{ orderBy == 'asc' ? '降序' : '升序'}}</button>
     </div>
 </template>
 
 <script setup>
-
+import useTodo from '../composables/useTodo.js';
+const { orderBy } = useTodo();
+const sort = () => {
+    orderBy.value = orderBy.value === 'asc' ? 'desc' : 'asc';
+}
 </script>
 
 <style lang="scss" scoped>
