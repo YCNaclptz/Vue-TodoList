@@ -12,7 +12,10 @@ export default () => {
         await request.delete(id);
         load();
     }
-    
+    const add = async (todo) => {
+        await request.post(todo);
+        load();
+    }
 
-    return { todos, load, del }
+    return { todos, load, del, add }
 }
