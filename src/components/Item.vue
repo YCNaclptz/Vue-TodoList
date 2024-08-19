@@ -3,15 +3,18 @@
     <div>
         <div class="item">
             <input type="text" :value="todo.title">
-            <button @click="del">刪除</button>
+            <button @click="del(todo.id)">刪除</button>
         </div>
     </div>
 </template>
 
 <script setup>
 import useRequest from '../composables/useRequest.js';
+import useTodo from '../composables/useTodo.js';
 
 const request = useRequest();
+const {del} = useTodo();
+
 const {todo} = defineProps({
     todo: {
         type: Object,
@@ -19,11 +22,7 @@ const {todo} = defineProps({
     }
 });
 
-const emit = defineEmits(['del']);
-const del = async () => {
-    await request.delete(todo.id);
-    emit('del');
-}
+
 </script>
 
 <style lang="scss" scoped>

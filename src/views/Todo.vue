@@ -1,21 +1,18 @@
 <template>
     <div>
-        <item class="item" v-for="todo in todos" :key="todo.id" :todo="todo" @del="del"/>
+        <item class="item" v-for="todo in todos" :key="todo.id" :todo="todo"/>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+
 import Item from '../components/Item.vue';
 import useRequest from '../composables/useRequest.js';
-
+import useTodo from '../composables/useTodo.js';
 const request = useRequest();
-const todos = ref([]);
 
-todos.value = await request.get();
-const del = async () => {
-    todos.value = await request.get();
-}
+const { todos, load } = useTodo();
+load();
 </script>
 
 <style lang="scss" scoped>
